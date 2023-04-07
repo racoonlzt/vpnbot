@@ -1,2 +1,23 @@
-# vpnbot
- wireguard whis tgbot
+telegram bot to control
+- wireguard
+- shadowsocks + v2ray
+- adguard home
+- PAC dynamic url
+---
+environment: ubuntu 18.04/20.04/22.04, debian 11
+
+install:
+
+wget -O- https://raw.githubusercontent.com/mercurykd/vpnbot/master/scripts/init.sh | sh -s YOUR_TELEGRAM_BOT_KEY
+
+---
+
+additional options:
+
+open 53 port for adguardhome:
+
+bash scripts/dns_open_53_port.sh
+
+install as service(autoload on start):
+
+bash scripts/install_as_service.sh
