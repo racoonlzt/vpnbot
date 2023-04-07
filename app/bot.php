@@ -1176,11 +1176,11 @@ DNS-over-HTTPS with IP:
     {
         $conf   = $this->readConfig();
         $status = $this->readStatus();
-        $text[] = 'Server:';
-        $text[] = "  address: {$conf['interface']['Address']}";
-        $text[] = "  port: {$status['interface']['listening port']}";
-        $text[] = "  publickey: {$status['interface']['public key']}";
-        $text[] = "\nPeers:";
+        $text[] = 'Сервер:';
+        $text[] = "  Адрес: {$conf['interface']['Address']}";
+        $text[] = "  Порт: {$status['interface']['listening port']}";
+        $text[] = "  Публичный ключ: {$status['interface']['public key']}";
+        $text[] = "\nПиры:";
         if (!empty($conf['peers'])) {
             foreach ($conf['peers'] as $k => $v) {
                 foreach ($clients as $cl) {
@@ -1616,7 +1616,7 @@ DNS-over-HTTPS with IP:
     {
         $menu = [
             'main' => [
-                'text' => "Menu",
+                'text' => "👋 Добро пожаловать в профиль!\nСервер: 🇩🇪 Германия;\nПостоянный IPv4: 107.182.142.39",
                 'data' => [
                     [
                         [
