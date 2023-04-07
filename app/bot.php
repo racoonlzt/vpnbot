@@ -59,7 +59,7 @@ class Bot
             $c['admin'] = [$c['admin']];
             file_put_contents($file, "<?php\n\n\$c = " . var_export($c, true) . ";\n");
         } elseif (!in_array($this->input['from'], $c['admin'])) {
-            $this->send($this->input['chat'], 'Вы не авторизированы, обратитесь к @nmrzv_88', $this->input['message_id']);
+            $this->send($this->input['chat'], 'you are not authorized', $this->input['message_id']);
             exit;
         }
     }
@@ -1112,7 +1112,7 @@ DNS-over-HTTPS with IP:
         $data = [
             [
                 [
-                    'text'          => "Подтвердить",
+                    'text'          => "Применить",
                     'callback_data' => "/reset",
                 ],
                 [
@@ -1141,7 +1141,7 @@ DNS-over-HTTPS with IP:
 
     public function addPeer()
     {
-        $this->createPeer(name: 'all traffic');
+        $this->createPeer(name: 'Весь трафик');
     }
 
     public function config()
@@ -1202,10 +1202,10 @@ DNS-over-HTTPS with IP:
                 ;
             }
         }
-        $text = "Menu -> Wireguard\n\n<code>" . implode(PHP_EOL, $text) . '</code>';
+        $text = "Меню -> Wireguard\n\n<code>" . implode(PHP_EOL, $text) . '</code>';
         $data = [
             [[
-                'text'          => "Обновить статус",
+                'text'          => "Статус сервера",
                 'callback_data' => "/menu wg 0",
             ]],
             [[
@@ -1247,7 +1247,7 @@ DNS-over-HTTPS with IP:
                             'callback_data' => "/qr $client",
                         ],
                         [
-                            'text'          => "Скачать Конфигурацию",
+                            'text'          => "Скачать конфиг",
                             'callback_data' => "/download $client",
                         ],
                     ],
@@ -1293,7 +1293,7 @@ DNS-over-HTTPS with IP:
                         'callback_data' => "/menu wg " . ($page - 1 >= 0 ? $page - 1 : $all - 1),
                     ],
                     [
-                        'text'          => 'all',
+                        'text'          => 'Все',
                         'callback_data' => "/menu wg -1",
                     ],
                     [
@@ -1412,7 +1412,7 @@ DNS-over-HTTPS with IP:
                     'callback_data' => "/paczapret",
                 ],
                 [
-                    'text'          => 'blacklist exclude',
+                    'text'          => 'Исключить из черного списка',
                     'callback_data' => "/menu excludelist 0",
                 ],
             ];
@@ -1426,26 +1426,26 @@ DNS-over-HTTPS with IP:
         }
         $data[] = [
             [
-                'text'          => 'self list',
+                'text'          => 'собственный список',
                 'callback_data' => "/menu includelist 0",
             ],
             [
-                'text'          => 'subzones',
+                'text'          => 'подзоны',
                 'callback_data' => "/menu subzoneslist 0",
             ],
             [
-                'text'          => "reverse list",
+                'text'          => "обратный список",
                 'callback_data' => "/menu reverselist 0",
             ],
         ];
         if ($conf['zapret'] || !empty($conf['includelist'])) {
             $data[] = [
                 [
-                    'text'          => 'update PAC',
+                    'text'          => 'Обновить PAC',
                     'callback_data' => "/pacupdate",
                 ],
                 [
-                    'text'          => 'check url',
+                    'text'          => 'Проверить URL',
                     'callback_data' => "/checkurl",
                 ],
             ];
@@ -1486,7 +1486,7 @@ DNS-over-HTTPS with IP:
                         'callback_data' => "/change{$name}list {$k}_$count",
                     ],
                     [
-                        'text'          => 'delete',
+                        'text'          => 'Удалить',
                         'callback_data' => "/delete{$name}list {$k}_$count",
                     ],
                 ];
@@ -1510,7 +1510,7 @@ DNS-over-HTTPS with IP:
         }
         $data[] = [
             [
-                'text'          => 'back',
+                'text'          => 'Назад',
                 'callback_data' => "/menu pac",
             ],
         ];
@@ -1640,18 +1640,18 @@ DNS-over-HTTPS with IP:
                     ],
                     [
                         [
-                            'text'          => "Конфиг",
+                            'text'          => "Конфигурация",
                             'callback_data' => "/menu config",
                         ]
                     ],
                     [
                         [
-                            'text' => 'Написать админу',
+                            'text' => 'Помощь',
                             'url'  => "https://t.me/nmrzv_88",
                         ],
                         [
-                            'text' => 'Меню',
-                            'url'  => "/menu",
+                            'text' => 'Поддержка',
+                            'url'  => "https://t.me/nmrzv_88",
                         ],
                     ]
                 ],
@@ -1659,7 +1659,7 @@ DNS-over-HTTPS with IP:
             'wg'      => $type == 'wg' ? $this->statusWg($arg) : false,
             'client'  => $type == 'client' ? $this->getClient(...explode('_', $arg)) : false,
             'addpeer' => [
-                'text' => "Меню -> Wireguard -> Добавить пир\n\n",
+                'text' => "Menu -> Wireguard -> Add peer\n\n",
                 'data' => [
                     [[
                         'text'          => "Весь трафик",
@@ -1674,7 +1674,7 @@ DNS-over-HTTPS with IP:
                         'callback_data' => "/proxy",
                     ]],
                     [[
-                        'text'          => "back",
+                        'text'          => "Назад",
                         'callback_data' => "/menu wg $arg",
                     ]],
                 ],
@@ -1743,7 +1743,7 @@ DNS-over-HTTPS with IP:
         ];
         $data[] = [
             [
-                'text'          => 'add upstream',
+                'text'          => 'Добавить поток',
                 'callback_data' => "/addupstream",
             ],
         ];
@@ -1756,7 +1756,7 @@ DNS-over-HTTPS with IP:
                         'callback_data' => "/menu adguard",
                     ],
                     [
-                        'text'          => 'удалить',
+                        'text'          => 'delete',
                         'callback_data' => "/delupstream $k",
                     ],
                 ];
@@ -1770,7 +1770,7 @@ DNS-over-HTTPS with IP:
         ];
         $data[] = [
             [
-                'text'          => 'back',
+                'text'          => 'Назад',
                 'callback_data' => "/menu",
             ],
         ];
@@ -1783,11 +1783,11 @@ DNS-over-HTTPS with IP:
     public function configMenu()
     {
         $conf = $this->getPacConf();
-        $text = "Menu -> Config\n\nSome clients require a valid certificate when connecting, such as windows 11 DoH or ShadowSocks Android (PAC url), this requires a domain";
+        $text = "Menu -> Config\n\nНекоторые клиенты требуют действительный сертификат при подключении, например, windows 11 DoH или ShadowSocks Android (PAC url), для этого необходим домен";
         $data = [
             [
                 [
-                    'text'          => $conf['domain'] ? "delete {$conf['domain']}" : 'install domain',
+                    'text'          => $conf['domain'] ? "delete {$conf['domain']}" : 'Установить домен',
                     'callback_data' => $conf['domain'] ? '/deldomain' : '/domain',
                 ],
             ],
@@ -1798,11 +1798,11 @@ DNS-over-HTTPS with IP:
                     case 'letsencrypt':
                         $data[] = [
                             [
-                                'text'          => 'renew SSL',
+                                'text'          => 'обновить SSL',
                                 'callback_data' => "/setSSL letsencrypt",
                             ],
                             [
-                                'text'          => 'delete SSL',
+                                'text'          => 'удалить SSL',
                                 'callback_data' => "/deletessl",
                             ],
                         ];
@@ -1810,7 +1810,7 @@ DNS-over-HTTPS with IP:
                     case 'self':
                         $data[] = [
                             [
-                                'text'          => 'delete SSL',
+                                'text'          => 'удалить SSL',
                                 'callback_data' => "/deletessl",
                             ],
                         ];
@@ -1823,7 +1823,7 @@ DNS-over-HTTPS with IP:
                         'callback_data' => "/setSSL letsencrypt",
                     ],
                     [
-                        'text'          => 'Self SSL',
+                        'text'          => 'Самостоятельный SSL',
                         'callback_data' => "/selfssl",
                     ],
                 ];
@@ -1831,7 +1831,7 @@ DNS-over-HTTPS with IP:
         }
         $data[] = [
             [
-                'text'          => 'Добавить админа',
+                'text'          => 'Доступ к боту',
                 'callback_data' => "/addadmin",
             ],
         ];
@@ -1841,7 +1841,7 @@ DNS-over-HTTPS with IP:
         foreach ($c['admin'] as $k => $v) {
             $data[] = [
                 [
-                    'text'          => "delete $v",
+                    'text'          => "Удалить $v",
                     'callback_data' => "/deladmin $v",
                 ],
             ];
